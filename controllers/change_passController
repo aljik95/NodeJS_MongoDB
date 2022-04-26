@@ -1,0 +1,37 @@
+require('dotenv').config()
+const crlogin = require('../models/create_login')
+const bcrypt = require("bcryptjs");
+
+
+
+const change_pass_index = (req,res) =>{
+    res.render('chang_pass.ejs',{title :  'Change Password'});
+}
+
+const change_pass_account = async (req,res) =>{
+    const {username,old_pass,new_pass : plainText,status} = req.body
+    const new_pass = await bcrypt.hash(plainText,10)
+
+    try {
+        const user = await crlogin.findOne({username : username}).lean();
+        if(!user){
+            return res.json({appStatus : 'error',msg : 'Invalid credentials.'})
+        }
+      
+
+        if(await bcrypt.compare(old_pass,user.password)){
+
+            await crlogin.findByIdAndUpdate(user._id,{password : new_pass}).then((result) =>{
+                return res.json({appStatus :'ok',msg : 'Successful.'});
+            }).catch((err) => {
+                return res.json({appStatus :'error',msg : 'New password is not acceptable.'});
+            })
+        }else{
+            return res.json({appStatus :'error',msg : 'Wrong password.'});
+        }
+
+    }catch{
+        throw error;
+    }
+}
+module.exports = {change_pass_index,change_pass_account}

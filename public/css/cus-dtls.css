@@ -1,0 +1,463 @@
+.dvTableDetails{
+    border: 1px solid #ccc;
+    width: 750px !important;
+    height: 1095px  !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+}
+label{
+ font-weight: bold;
+}
+input{
+    width: 143px;
+    height: 25px;
+    font-size: 15px;
+    font-weight: bold;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.dtl-cust-img{
+    width: 65%;
+    margin-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cust-dtl{
+  float: left;
+  width: 210px;
+  height: 430px;
+}
+.dtl-name{
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 33px;
+  padding: 8px;
+  height: 85px;
+
+}
+.dtl-pnum{
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
+}
+.dtl{
+    text-align: center;
+    font-family: Arial;
+}
+.cust-dtl-pnts{
+    float: left;
+    width: 380px;
+    height: 430px;
+    margin-left: 10px;
+}
+
+.dtl-points-lbl{
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.dtl-points{
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 50px;
+    transition: color 5s;
+    color: #ff0000;
+}
+
+
+.cust-dtl-transact{
+    width: 100%;
+    height: 50%;
+    float: left;
+    margin-top: 10px;
+}
+
+.tbl-transact{
+    width: 100%;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    height: 30px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+.scrollit{
+    overflow:scroll;
+    height:95%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 5px;
+    width: 20%;
+    text-align: center;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+
+ thead th{
+
+    padding: 1px;
+    text-align: center;
+    width: 20%;
+    height: 30px;
+    background: #f27530;
+    position: sticky;
+    top: 0;
+
+ }
+
+ .dtl-cdate{
+  margin-bottom: 25px;
+ }
+
+ .amount-inp{
+  margin-left: 80px;
+  text-align: center;
+}
+
+.divisor-inp{
+  margin-left: 87px;
+  text-align: center;
+}
+
+  .points-inp{
+    margin-left: 5px;
+    width: 143px;
+    text-align: center;
+  }
+
+  .add-pnts{
+  background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 15px 5px 30px 5px;
+    width: 200px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    border-radius: 5px 5px 5px 5px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .add-pnts:hover{
+    background: linear-gradient(#009688, #009688);
+    cursor: pointer;
+  }
+
+  .vwBarcode{
+    background-color: #f27530;
+    border: none;
+    color: white;
+    padding: 15px 5px 30px 5px;
+    width: 200px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    border-radius: 5px 5px 5px 5px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .vwBarcode:hover{
+    background: linear-gradient(#ff5722, #ff5722);
+    cursor: pointer;
+  }
+
+  .vw_pr_qr{
+    position: absolute;
+    display: block;
+    width: 370px;
+    height: 315px;
+    padding: 20px;
+    z-index: 1;
+    background: #333333;
+    top: 225px;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 10px;
+  }
+
+
+  .isBlur{
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+  }
+
+  .qr-img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+
+    margin-top: 50px;
+  }
+
+  .div-update{
+    margin-left: 150px;
+  }
+
+  .div-update-lbl{
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .div-update-lbl:hover{
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .alert {
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 285px;
+    margin-left: auto; 
+  margin-right: auto; 
+  width: 400px;
+  height: 150px;
+  border-radius: 10px;
+  }
+  
+  .closebtn {
+    margin-left: 15px;
+    color: #ff5722;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: #e91e63;
+  }
+
+  .pnt-save{
+    font-size: 15px;
+    font-family: Arial;
+    width: 150px;
+    height: 30px;
+    border-width: 1px;
+    color: #fff;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0px 10px 14px -7px #276873;
+    background-color: #f27530;
+    margin-left: 120px;
+    margin-top: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+    
+  }
+
+  .pnt-save:hover{
+    background-color: #ff5722;
+      cursor: pointer;
+  }
+
+  .qr-print{
+    background-color: #f27530;
+    border: none;
+    color: white;
+    padding: 15px 5px 15px 5px;
+    width: 200px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    border-radius: 5px 5px 5px 5px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+  }
+
+  .qr-print:hover{
+    background-color: #ff5722;
+      cursor: pointer;
+  }
+
+  .card-container{
+    border: 2px solid #333333;
+    width: 324px;
+    height: 204px;
+    display: block;
+  }
+
+ 
+
+  .card-container-hdr-logo{
+   
+    width: 70px;
+    height: 65px;
+    display: block;
+    float: left;
+  }
+
+  .card-container-hdr-dtls{
+   
+    width: 250px;
+    height: 65px;
+    display: block;
+    float: left;
+  }
+
+  .card-container-body-qr{
+    border-top: 1px solid #333333;
+    width: 100px;
+    height: 134px;
+    display: block;
+    float: left;
+  }
+
+  .card-container-body-dtls{
+    border-top: 1px solid #333333;
+    width: 220px;
+    height: 134px;
+    
+    display: block;
+    float: left;
+  }
+
+  .card-qr{
+    width: 80px;
+    height: 80px;
+    margin-top: 25px;
+    margin-left: 10px;
+  }
+
+  .card-logo{
+    position: relative;
+    float: left;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+    margin-left: 10px;
+  }
+  .card-body{
+    font-size: 8px;
+    text-align: center;
+    font-family: "Gill Sans", sans-serif !important  ;
+  }
+  .card-hdr{
+    font-size: 8px;
+    text-align: left;
+    font-family: "Gill Sans", sans-serif !important;
+  }
+
+  .card-title{
+    font-size: 15px !important;
+    font-weight: bold;
+  }
+
+  .card-compadd{
+    font-weight: bold;
+    font-style: italic;
+    margin-top: -5px;
+    
+  }
+
+  .card-compnum{
+    font-weight: bold;
+    font-style: italic;
+    margin-top: -8px;
+  }
+
+  .tag-line{
+    border-top: 1px dashed rgb(20, 18, 18);
+    width:90%
+  }
+
+  .card-cust-name{
+    padding-top: 15px;
+    margin-bottom: -8px;
+    font-weight: bold;
+    font-size: 13px !important;
+  }
+
+  .card-cust-num{
+    margin-bottom: -8px;
+    font-weight: bold;
+    font-size: 10px !important;
+  }
+
+  .card-cust-join{
+    margin-bottom: -8px;
+    font-weight: bold;
+    font-size: 10px !important;
+  }
+
+  .tag-line-dtl{
+    font-size: 8px;
+    margin-top: -10px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+
+  .isPeso{
+    padding: 6px 15px !important
+  }
+  .isRadSpn{
+    padding: 0px 11px !important;
+  }
+
+  .isRadInp{
+    width: 15px !important;
+  }
+
+  .isInput {
+    text-align: right;
+    width: 200px !important;
+}
+
+.input-group {
+  margin-left: 23%;
+}
+.loc{
+  
+  margin-left: 23%;
+}
+.location{
+  width: 238px !important;
+  margin-left: 23%;
+}

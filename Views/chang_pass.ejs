@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<script src="/js/jquery-1.9.1.js"></script>
+<script src="/js/jquery-ui-1.10.3.custom.js"></script>
+<script src="/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="/js/change_pass.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/global.css">
+<link rel="stylesheet" type="text/css" href="/css/change_pass.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RM Refilling Station | <%=title%></title>
+    
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Tabs Titles -->
+          <h2 id="sIN" class="active"> Change Password </h2>
+         
+      
+          <!-- Icon -->
+          <div class="fadeIn first">
+            <img class="reg-img" src="/images/logo-test.jpg" alt="tanis mencion" >
+          </div>
+      
+          <!-- Create Form -->
+          <form id="ChangePass-Form">
+            <input type="text" id="username" class="fadeIn second" name="username" autocomplete="off" value="<%=user%>" disabled>
+            <input type="password" id="old_password" class="fadeIn second" name="old_password" autocomplete="off" placeholder="OLD PASSWORD" required>
+            <input type="password" id="new_password" class="log-in fadeIn third" name="new_password" autocomplete="off" placeholder="NEW PASSWORD" required><br><br>
+            <label id="lblmsg"></label><br><br>
+            <input type="submit" class="fadeIn fourth" value="Update Password">
+          </form>
+      
+          <!-- Remind Passowrd -->
+          <!-- <div id="formFooter">
+            <a class="underlineHover" href="#">Forgot Password?</a>
+          </div> -->
+
+          <script>
+            const logIn = document.getElementById('ChangePass-Form')
+
+            logIn.addEventListener('submit',validateUser)
+        
+
+            async function validateUser(e){
+                e.preventDefault();
+                const username = document.getElementById('username').value
+                const old_pass = document.getElementById('old_password').value
+                const new_pass = document.getElementById('new_password').value
+
+                    const result = await fetch('/change_pass/update_pass',{
+                        method: 'POST',
+
+                        headers: {'Content-Type':'application/json'},
+                        body: JSON.stringify({username,old_pass,new_pass}) 
+                    })
+                    .then((res) =>res.json())
+                    .catch((err) => console.log(err));
+
+                    if(result.appStatus === 'ok'){
+                      isOk();
+                      $('#lblmsg').text(result.msg)
+                      setTimeout(function(){ location.assign('/cust_list'); }, 2000);
+                      
+                    } 
+
+                    if(result.appStatus === 'error'){
+                      isErr();
+                      $('#lblmsg').text(result.msg)
+                    } 
+                    if(result.id){
+                     
+                    }
+            }
+
+            // $(document).on('click','#sUP', function(){
+            //   location.assign('/create_account')
+            // })
+            </script>
+        
+          </div>
+        </div>
+ 
+    <%- include('./partials/footer.ejs')%>
+</body>
+</html>

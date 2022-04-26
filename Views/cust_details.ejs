@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<script src="/js/jquery-1.9.1.js"></script>
+<script src="/js/jquery-ui-1.10.3.custom.js"></script>
+<script src="/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="/js/qrPrint.js"></script>
+<script src="/js/customer_details.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/global.css">
+<link rel="stylesheet" type="text/css" href="/css/cus-dtls.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+<%- include('./partials/head.ejs')%>
+
+<body>
+ 
+        <%- include('./partials/nav.ejs')%>
+      
+            <div class="dvTableDetails">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <img class="dtl-cust-img" src="/images/cust-logo.png" alt="tanis mencion"><br><br><br>
+                        <p class="dtl dtl-name"  id="dtl-name"><%= cust.LastName + ', ' +cust.FirstName + ' ' + cust.MiddleName %></p>
+                        <p class="dtl dtl-pnum"  id="dtl-pnum"><%= cust.PhoneNumber%></p>
+                        <p class="dtl dtl-cdate" id="dtl-cdate"><%= cust.createdAt.toISOString().slice(0, 10) %></p>
+                        <input class ="vwBarcode" data-doc ="<%=cust._id%>" type="submit" value="View QR Code"></input>
+                        <img class="dtl-logo" id="comp-logo" src="/images/logo-test.jpg" alt="tanis mencion" style="display: none;">
+                        <p class="dtl comp-num"  id="comp-num" style="display: none;">09123456789</p>
+                        <p class="dtl comp-add"  id="comp-add" style="display: none;">KM.5 Puguis ,Benguet</p>
+                        <p class="dtl comp-title"  id="comp-title" style="display: none;">RM Refilling Station</p>
+                        
+                        <script>
+                          const getQR = document.querySelector('input.vwBarcode')
+
+                          getQR.addEventListener('click', (e) =>{
+                            const qrEndPoint = `/cust_details/gen_qr/${getQR.dataset.doc}`
+                            
+                            fetch(qrEndPoint,{
+                              method: 'GET'})
+                                .then((res) =>res.json())
+                                .then((res) => document.getElementById("img-data").src=res.src,isBlur())
+                                .catch((err) => console.log(err));
+                              })
+                        </script>
+
+                      </div>
+                    
+                      <div class="col-md-7">
+                            <p class="dtl dtl-points-lbl">Accumulated Points</p>
+                            <p class="dtl dtl-points"><%= cust.LatestPoints%></p><br>
+
+                            <form action="/cust_details/addPoints" onsubmit="return validateForm()" method="POST">
+                                <label class="loc" for="location">Choose Location:</label>
+                                <select class = " form-control location" name="Location" id="location">
+                                  <option value="Puguis">Puguis</option>
+                                  <option value="Kapongga">Kapongga</option>
+                                  <option value="Baguio">Baguio</option>
+                                </select>
+                                <br><br>                            
+
+                                  <div class="form-group">
+                
+                                  <div class="input-group">
+                                    <div class="isPeso input-group-addon">₱</div>
+                                    <input type="text" class="isInput form-control" id="amount-inp" autocomplete="off" placeholder="Amount" name="Amount" required>
+                                  </div>
+                                </div>
+
+                               
+                                <div class="form-group">
+                    
+                                  <div class="input-group">
+                                    <span class="isRadSpn input-group-addon">
+                                      <input class="isRadInp" type="radio" aria-label="...">
+                                    </span>
+                                    <input type="text" class="isInput form-control" id="divisor-inp" autocomplete="off" placeholder="Divisor" name="Divisor" disabled="disabled" required>
+                                  </div>
+                                </div>
+                                 
+                                <div class="form-group">
+                  
+                                  <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span></div>
+                                    <input type="text" class="isInput form-control" id="points-inp" autocomplete="off" placeholder="Points" name="Points" required>
+                                  </div>
+                                </div>
+
+
+                                <!-- <label class="points-lbl">Amount:</label>
+                                <input class="amount-inp" id="amount-inp" autocomplete="off"  name="Amount" required>
+                                <br>
+                                <label class="divisor-lbl">Divisor:</label>
+                                <input class="divisor-inp" id="divisor-inp" autocomplete="off" value="52.10" name="Divisor" required>
+                                <br>
+                                <label class="points-lbl">Calculated Points:</label>
+                                <input class="points-inp" id="points-inp" value="0.00" autocomplete="off" name="Points" required> -->
+
+                                <br><br>
+                                <input class ="add-pnts" type="submit" value="Add Points"></input>
+                                <input name="refID" type="text" value="<%=cust._id%>" style="display:none">
+                            </form>
+                      </div> 
+                    </div>
+                    <div class="cust-dtl-transact">
+                        <tbody>
+                            <tr>
+                              <td colspan="3">
+                                <div class="scrollit">
+                                    <table class="tbl-transact">
+                                      <thead>
+                                        <tr class="tbl-head">
+                                          <th>Location</th>
+                                          <th>Date</th>
+                                          <th>Amount</th>
+                                          <th>Divisor</th>
+                                          <th>Points</th>
+                                        </tr>
+                                      </thead>
+
+                                        <% if(custpnt.length > 0) { %>
+                                            <%custpnt.forEach(custpnt =>{%>
+                                              <tr>
+                                                <td><%= custpnt.Location %></td>
+                                                <td><%= custpnt.createdAt.toISOString().slice(0, 10) %></td>
+                                                <td><%= custpnt.Amount %></td>
+                                                <td><%= custpnt.Divisor %></td>
+                                                <td><%= custpnt.Points %></td>
+                                              </tr>
+                                            <% }) %>    
+                                        <%}%>
+                                    </table>
+                                </div>
+                              </td>
+                            </tr>
+                        </tbody>
+                </div> 
+                <%- include('./partials/footer.ejs')%>
+            </div> 
+           
+        <div class="vw_pr_qr" style="display: none;">
+          <span class="closebtn" class="close">&times;</span> 
+          <img src id="img-data" class="qr-img" alt="QR Code Image">
+          <input type="button"  class="qr-print" id="qr-print">Print QR Code</input>
+          <br>
+        </div>
+
+        <div class="alert" style="display: none;">
+          <span class="closebtn" class="close">&times;</span> 
+          <p><strong>Hi <%=user%> !,</strong></p><p> You're about to update the data. Do you want to continue ?</p>
+          <br>
+          <button type="button" class="pnt-save">Yes</button>
+         
+        </div>
+        <script>
+          var divLocResult = '<%- JSON.stringify(divResult) %>'
+        </script>
+        
+</body>
+
+</html>

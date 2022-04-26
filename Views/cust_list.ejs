@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="/css/global.css">
+<link rel="stylesheet" type="text/css" href="/css/cust-list.css">
+<script src="/js/jquery-1.9.1.js"></script>
+<script src="/js/jquery-ui-1.10.3.custom.js"></script>
+<script src="/js/jquery-ui-1.10.3.custom.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+<%- include('./partials/head.ejs')%>
+
+<body>  
+    <%- include('./partials/nav.ejs')%>
+    <div class="container">
+            <div class="cust-list-add">
+                <img class="cust-add" src="/images/cust-add.png" alt="tanis mencion">
+                <a class ='cust-details' href="/cust_list/new_cust"><button type='button' class="btnView-add" id="btnView" onClick="reply_click('<%=cust._id%>')" style="vertical-align:middle"><span>Add Customer</span></button></a>
+            </div>
+            
+            <% if(cust.length > 0) { %>
+                <%cust.forEach(cust =>{%>
+                    <div class="cust-list">
+                        <img class="cust-img" src="/images/cust-logo.png" alt="tanis mencion">
+                        <p class="name"><%= cust.LastName + ', ' +cust.FirstName + ' ' + cust.MiddleName %></p>
+                        <p class="points"><%= cust.LatestPoints%></p>
+                        <p class="transact"><%= cust.updatedAt.toDateString()%></p>
+                        <a class ='cust-details' href="/cust_list/<%=cust._id%>"><button type='button' class="btnView" id="btnView" onClick="reply_click('<%=cust._id%>')" style="vertical-align:middle"><span>Details</span></button></a>
+                    </div>
+                <% }) %>    
+            <%}%>
+    </div>
+
+    <%- include('./partials/footer.ejs')%>
+</body>
+</html>

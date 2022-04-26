@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" type="text/css" href="/css/global.css">
+
+<%- include('./partials/head.ejs')%>
+
+<body>
+    <div class="vw_pr_qr">
+    <img src=<%=src%> alt="QR Code Image">
+    <p>Scan the QR Code to access data!</p>
+    <a href="/"><button type="button" class="btn btn-primary">Back</button></a>
+    <br>
+    <form class="form">
+        <%- include('./partials/nav.ejs')%>
+        <hr class="head">
+
+    </form>
+    </div>
+    <hr class="bottom">
+    <%- include('./partials/footer.ejs')%>
+</body>
+</html>
